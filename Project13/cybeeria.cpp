@@ -155,22 +155,23 @@ void war(User& user, const Mission& Mission) {
         do {
             cout << "Caution: If you increase your health, experience points will be deducted.\n";
             system("pause");
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
+
             cout << "Do you want to increase your health? (y/n): ";
             cin >> increaseHealthChoice;
+
+            if (cin.fail()) {
+                cin.clear(); // Clear the error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
+                cout << "Invalid input. Please enter 'y' or 'n'.\n";
+                continue; // Skip the rest of the loop and start over
+            }
+
             if (increaseHealthChoice != 'y' && increaseHealthChoice != 'Y' && increaseHealthChoice != 'n' && increaseHealthChoice != 'N') {
-                cout << "Invalid Choice. Please Select the Correct Choice.";
+                cout << "Invalid Choice. Please select 'y' or 'n'.\n";
             }
         } while (increaseHealthChoice != 'y' && increaseHealthChoice != 'Y' && increaseHealthChoice != 'n' && increaseHealthChoice != 'N');
-        if (increaseHealthChoice == 'y' || increaseHealthChoice == 'Y') {
-            int experienceLoss = 20;
-            if (user.XP >= experienceLoss) {
-                user.health += 20;
-                user.XP -= experienceLoss;
-                cout << "Health increased. Your new health: " << user.health << "\n";
-            }
-            else {
-                cout << "Not enough experience points to increase health.\n";
-            }
+
         }
 
         if (Mission.name == "CyberVanguard X1") {
@@ -201,7 +202,7 @@ void war(User& user, const Mission& Mission) {
             }
         }
     }
-}
+
 
 void levelUp(User& player) {
     int requiredExperience = 50;
