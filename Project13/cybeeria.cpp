@@ -2,7 +2,8 @@
 #include <string>
 #include <cstdlib>
 #include <ctime>
-
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -216,6 +217,31 @@ void levelUp(User& player) {
 
 int main() {
 
+    string message =
+     "              .-. . . .-. .-. . . .-. .-. .   .-. .-.   .-. .-.\n"
+     "              |   |-| |(  | | |\|  |  |   |   |-  `-.   | | |- \n"
+     "              `-' ' ` ' ' `-' ' ` `-' `-' `-' `-' `-'   `-' '  \n"
+
+     "        _______         ______  _______ _______ _________ _______   \n"
+     "       (  ____ \\     /|  ___ \\(  ____ \\  ____ )\\__   __/(  ___  )  \n"
+     "       | (    \\/ \\   / ) (   ) ) (    \\/ (    )|   ) (   | (   ) |_ \n"
+     "       | |      \\ () /| (_/ /| (   | (____)|   | |   | (___) |_)\n"
+     "       | |       \\   / |  __ ( |  __)  |     __)   | |   |  ___  |  \n"
+     "       | |        ) (  | (  \\ \\| (     | (\\ (      | |   | (   ) |_ \n"
+     "       | (____/\\  | |  | )___) ) (____/\\ ) \\ \\_____) (___| )   ( |_)\n"
+     "       (_______/  \\_/  |/ \\___/(_______//   \\__/\\_______/|/     \\|  \n"
+     "    \n"
+     "    \n"
+     "                            SERENITY OF ELDERS"
+     "    \n"
+     "    \n";
+
+ for (char c : message) {
+     cout << c;
+     this_thread::sleep_for(std::chrono::milliseconds(1));
+
+
+ }
 
     cout << "WELCOME to '  Serenity of Elders in the Cybernetic Era.'" << endl << endl << "In the year 2126, the world is under the oppressive rule of the SUPERIORS,\n who seek to assimilate humanity into a cybernetic regime. Join our heroes: \na warrior who escaped the clutches of the SUPERIORS, \na librarian turned mage preserving ancient wisdom, \nand a rogue mastering stealth in the face of high-tech tyranny.\n As you navigate this cybernetic era, your choices will shape \nthe destiny of a world torn between ancient mysticism and technological dominance. \nAre you ready to lead the rebellion and restore freedom? \n";
 
