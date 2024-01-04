@@ -33,7 +33,7 @@ User initializeUser() {
         cout << "Enter your hero class (magnus/corvus/nyx): ";
         cin >> User.Class;
         if (User.Class == "magnus") {
-            cout << endl << "In 2126, a warrior named Magnus flees the cybernetic rule of the $UPERIOR$, finding sanctuary in a jungle.\nEmbracing ancient combat and blending tradition with innovation, \nhe becomes a symbol of resistance.Armed with a rare metal weapon, \nhe decided to wage war against the SUPERIORS, \nmarking the dawn of a new era for humanity." << endl<<endl;
+            cout << endl << "In 2126, a warrior named Magnus flees the cybernetic rule of the $UPERIOR$, finding sanctuary in a jungle.\nEmbracing ancient combat and blending tradition with innovation, \nhe becomes a symbol of resistance.Armed with a rare metal weapon, \nhe decided to wage war against the $UPERIOR$, \nmarking the dawn of a new era for humanity." << endl<<endl;
         }
 
         if (User.Class == "corvus") {
@@ -119,16 +119,16 @@ Mission missionSelection() {
 void Story(const Mission& Mission) {
     // Different stories for each quest
     if (Mission.name == "CyberVanguard X1") {
-        cout << endl<<"\nIn the dark corners of the digital realm, the notorious CyberVanguard X1 has emerged.\n";
+        cout << endl<<"\nThe villain you will be facing is named CyberVanguard X1:\nIn the dark corners of the digital realm, the notorious CyberVanguard X1 has emerged.\n";
         cout << "Their cybernetic minions are wreaking havoc, and it's up to you to stop their nefarious plans!\n";
         cout << "Your MISSION is to infiltrate their virtual lair and neutralize the threat!\n";
     }
     else if (Mission.name == "TechSniper Y3") {
-        cout <<endl<< "\nThe elusive TechSniper Y3, a master of precision and stealth, has been targeting key technological assets.\n";
+        cout <<endl<< "\nThe villain you will be facing is named TechSniper Y3:\nThe elusive TechSniper Y3, a master of precision and stealth, has been targeting key technological assets.\n";
         cout << "Your MISSION is to track down and confront TechSniper Y3 before they can unleash chaos on the digital infrastructure!\n";
     }
     else if (Mission.name == "CyberDrake Alpha9") {
-        cout <<endl<<"\nA formidable entity known as CyberDrake Alpha9 has surfaced, bringing chaos to the interconnected world.\n";
+        cout <<endl<<"\nThe villain you will be facing is namedCyberDrake Alpha9:\nA formidable entity known as CyberDrake Alpha9 has surfaced, bringing chaos to the interconnected world.\n";
         cout << "Your MISSION is to confront CyberDrake Alpha9 in the heart of the digital domain and restore order!\n";
     }
 }
@@ -163,14 +163,43 @@ void war(User& user, const Mission& Mission) {
         cout << "You defeated the enemy!\n";
         user.XP += Mission.difficulty * 10;
 
-        char increaseHealthChoice;
+       
+            if (Mission.name == "CyberVanguard X1") {
+                cout << "Congratulations! You obtained a Cyber Sword. Added it to your inventory.\n";
+                if (user.inventorySize < inventarysize) {
+                    user.inventory[user.inventorySize++] = "Cyber Sword";
+                }
+                else {
+                    cout << "Your inventory is full. Cannot add more items.\n";
+                }
+            }
+            else if (Mission.name == "TechSniper Y3") {
+                cout << "Congratulations! You obtained a Stealth Cloak. Added it to your inventory.\n";
+                if (user.inventorySize < inventarysize) {
+                    user.inventory[user.inventorySize++] = "Stealth Cloak";
+                }
+                else {
+                    cout << "Your inventory is full. Cannot add more items.\n";
+                }
+            }
+            else if (Mission.name == "CyberDrake Alpha9") {
+                cout << "Congratulations! You obtained a Digital Shield. Added it to your inventory.\n";
+                if (user.inventorySize < inventarysize) {
+                    user.inventory[user.inventorySize++] = "Digital Shield";
+                }
+                else {
+                    cout << "Your inventory is full. Cannot add more items.\n";
+                }
+            }
+
+        char addHealthchoice;
         do {
-            cout << "Warning! If you increase your health, experience points will be deducted.\n";
+            cout << "Warning! If you want to buy items, your experience points will be deducted.\n";
             system("pause");
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
 
-            cout << "Do you want to increase your health? (y/n): ";
-            cin >> increaseHealthChoice;
+            cout << "Do you want to buy an item? (y/n): ";
+            cin >> addHealthchoice;
 
             if (cin.fail()) {
                 cin.clear(); // Clear the error flag
@@ -179,41 +208,16 @@ void war(User& user, const Mission& Mission) {
                 continue; // Skip the rest of the loop and start over
             }
 
-            if (increaseHealthChoice != 'y' && increaseHealthChoice != 'Y' && increaseHealthChoice != 'n' && increaseHealthChoice != 'N') {
+            if (addHealthchoice != 'y' && addHealthchoice != 'Y' && addHealthchoice != 'n' && addHealthchoice != 'N') {
                 cout << "Invalid Choice. Please select 'y' or 'n'.\n";
             }
-        } while (increaseHealthChoice != 'y' && increaseHealthChoice != 'Y' && increaseHealthChoice != 'n' && increaseHealthChoice != 'N');
+        } while (addHealthchoice != 'y' && addHealthchoice != 'Y' && addHealthchoice != 'n' && addHealthchoice != 'N');
 
         }
-
-        if (Mission.name == "CyberVanguard X1") {
-            cout << "Congratulations! You obtained a Cyber Sword. Added it to your inventory.\n";
-            if (user.inventorySize < inventarysize) {
-                user.inventory[user.inventorySize++] = "Cyber Sword";
-            }
-            else {
-                cout << "Your inventory is full. Cannot add more items.\n";
-            }
-        }
-        else if (Mission.name == "TechSniper Y3") {
-            cout << "Congratulations! You obtained a Stealth Cloak. Added it to your inventory.\n";
-            if (user.inventorySize < inventarysize) {
-                user.inventory[user.inventorySize++] = "Stealth Cloak";
-            }
-            else {
-                cout << "Your inventory is full. Cannot add more items.\n";
-            }
-        }
-        else if (Mission.name == "CyberDrake Alpha9") {
-            cout << "Congratulations! You obtained a Digital Shield. Added it to your inventory.\n";
-            if (user.inventorySize < inventarysize) {
-                user.inventory[user.inventorySize++] = "Digital Shield";
-            }
-            else {
-                cout << "Your inventory is full. Cannot add more items.\n";
-            }
-        }
+   
     }
+    
+    
 
 
 void levelUp(User& player) {

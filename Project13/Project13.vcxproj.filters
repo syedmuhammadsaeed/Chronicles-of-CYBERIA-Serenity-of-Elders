@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cybeeria.cpp">
+    <ClCompile Include="Cyberia.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
