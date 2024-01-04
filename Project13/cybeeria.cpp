@@ -239,7 +239,7 @@ int main() {
 
  for (char c : message) {
      cout << c;
-     this_thread::sleep_for(std::chrono::milliseconds(1));
+     this_thread::sleep_for(std::chrono::milliseconds(0));
 
 
  }
