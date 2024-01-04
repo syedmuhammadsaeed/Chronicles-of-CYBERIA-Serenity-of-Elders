@@ -30,15 +30,26 @@ User initializeUser() {
 
 
     do {
-        cout << "Enter your hero class (warrior/mage/rogue): ";
+        cout << "Enter your hero class (magnus/corvus/nyx): ";
         cin >> User.Class;
-
-        if (User.Class != "warrior" || User.Class != "mage" || User.Class != "rogue")
-        {
-            cout << "Please choose a valid class (warrior, mage, or rogue).\n";
+        if (User.Class == "magnus") {
+            cout << endl << "In 2126, a warrior named Magnus flees the cybernetic rule of the $UPERIOR$, finding sanctuary in a jungle.\nEmbracing ancient combat and blending tradition with innovation, \nhe becomes a symbol of resistance.Armed with a rare metal weapon, \nhe decided to wage war against the SUPERIORS, \nmarking the dawn of a new era for humanity." << endl<<endl;
         }
 
-    } while (User.Class != "warrior" && User.Class != "mage" && User.Class != "rogue");
+        if (User.Class == "corvus") {
+            cout << endl << "In 2126, a rebellious librarian defies $UPERIOR$, leaving with ancient tomes. \nEmbracing the mage's role, they join rebels alongside \nthe warrior, battling machines to restore harmony. \nClad in enchanted robes, wielding a crackling staff, \nthe librarian stands united against machinery, \na beacon of hope in the fight for liberation." << endl<<endl;
+        }
+
+        if (User.Class == "nyx") {
+            cout << endl<<"In shadows' dance, Nyx's silent steps echo tales of a mage turned rogue.\n Armed with a modified arsenal, she maneuvers through the labyrinth of cybernetic dominance. \nSpecial guards, mere whispers in her wake, seek the elusive resistance she embodies. \nNyx, a symbol of hope, fights against the encroaching machinery for a world yearning for freedom." << endl << endl;
+        }
+
+        if (User.Class != "magnus" && User.Class != "corvus" && User.Class != "nyx")
+        {
+            cout << "Please choose a valid class (magnus, corvus, or nyx).\n";
+        }
+
+    } while (User.Class != "magnus" && User.Class != "corvus" && User.Class != "nyx");
     User.health = 100;
     User.XP = 0;
     User.inventorySize = 0;
@@ -108,16 +119,16 @@ Mission missionSelection() {
 void Story(const Mission& Mission) {
     // Different stories for each quest
     if (Mission.name == "CyberVanguard X1") {
-        cout << "In the dark corners of the digital realm, the notorious CyberVanguard X1 has emerged.\n";
+        cout << endl<<"\nIn the dark corners of the digital realm, the notorious CyberVanguard X1 has emerged.\n";
         cout << "Their cybernetic minions are wreaking havoc, and it's up to you to stop their nefarious plans!\n";
         cout << "Your MISSION is to infiltrate their virtual lair and neutralize the threat!\n";
     }
     else if (Mission.name == "TechSniper Y3") {
-        cout << "The elusive TechSniper Y3, a master of precision and stealth, has been targeting key technological assets.\n";
+        cout <<endl<< "\nThe elusive TechSniper Y3, a master of precision and stealth, has been targeting key technological assets.\n";
         cout << "Your MISSION is to track down and confront TechSniper Y3 before they can unleash chaos on the digital infrastructure!\n";
     }
     else if (Mission.name == "CyberDrake Alpha9") {
-        cout << "A formidable entity known as CyberDrake Alpha9 has surfaced, bringing chaos to the interconnected world.\n";
+        cout <<endl<<"\nA formidable entity known as CyberDrake Alpha9 has surfaced, bringing chaos to the interconnected world.\n";
         cout << "Your MISSION is to confront CyberDrake Alpha9 in the heart of the digital domain and restore order!\n";
     }
 }
@@ -130,7 +141,7 @@ void war(User& user, const Mission& Mission) {
 
     Story(Mission);
 
-    cout << "\nBattle Start! You are standing in front of a strong enemy!\n";
+    cout << "\nBattle Start! You are standing in front of a strong enemy!"<<endl<<endl;
 
     while (user.health > 0 && enemyHealth > 0) {
         int userAttack = 1 + rand() % 10;
@@ -154,7 +165,7 @@ void war(User& user, const Mission& Mission) {
 
         char increaseHealthChoice;
         do {
-            cout << "Caution: If you increase your health, experience points will be deducted.\n";
+            cout << "Warning! If you increase your health, experience points will be deducted.\n";
             system("pause");
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
 
@@ -219,21 +230,20 @@ void levelUp(User& player) {
 int main() {
 
     string message =
-     "              .-. . . .-. .-. . . .-. .-. .   .-. .-.   .-. .-.\n"
-     "              |   |-| |(  | | |\|  |  |   |   |-  `-.   | | |- \n"
-     "              `-' ' ` ' ' `-' ' ` `-' `-' `-' `-' `-'   `-' '  \n"
+     "                    .-. . . .-. .-. . . .-. .-. .   .-. .-.   .-. .-.\n"
+     "                    |   |-| |(  | | |\|  |  |   |   |-  `-.   | | |- \n"
+     "                    `-' ' ` ' ' `-' ' ` `-' `-' `-' `-' `-'   `-' '  \n"
 
-     "        _______         ______  _______ _______ _________ _______   \n"
-     "       (  ____ \\     /|  ___ \\(  ____ \\  ____ )\\__   __/(  ___  )  \n"
-     "       | (    \\/ \\   / ) (   ) ) (    \\/ (    )|   ) (   | (   ) |_ \n"
-     "       | |      \\ () /| (_/ /| (   | (____)|   | |   | (___) |_)\n"
-     "       | |       \\   / |  __ ( |  __)  |     __)   | |   |  ___  |  \n"
-     "       | |        ) (  | (  \\ \\| (     | (\\ (      | |   | (   ) |_ \n"
-     "       | (____/\\  | |  | )___) ) (____/\\ ) \\ \\_____) (___| )   ( |_)\n"
-     "       (_______/  \\_/  |/ \\___/(_______//   \\__/\\_______/|/     \\|  \n"
+     "              _______         ______  _______ _______ _________ _______   \n"
+     "             (  ____ \\     /|  ___ \\(  ____ \\  ____ )\\__   __/(  ___  )  \n"
+     "             | (    \\/ \\   / ) (   ) ) (    \\/ (    )|   ) (   | (   ) |_ \n"
+     "             | |      \\ () /| (_/ /| (   | (____)|   | |   | (___) |_)\n"
+     "             | |       \\   / |  __ ( |  __)  |     __)   | |   |  ___  |  \n"
+     "             | |        ) (  | (  \\ \\| (     | (\\ (      | |   | (   ) |_ \n"
+     "             | (____/\\  | |  | )___) ) (____/\\ ) \\ \\_____) (___| )   ( |_)\n"
+     "             (_______/  \\_/  |/ \\___/(_______//   \\__/\\_______/|/     \\|  \n"
      "    \n"
-     "    \n"
-     "                            SERENITY OF ELDERS"
+     "                                    SERENITY OF ELDERS"
      "    \n"
      "    \n";
 
@@ -244,7 +254,7 @@ int main() {
 
  }
 
-    cout << "WELCOME to '  Serenity of Elders in the Cybernetic Era.'" << endl << endl << "In the year 2126, the world is under the oppressive rule of the SUPERIORS,\n who seek to assimilate humanity into a cybernetic regime. Join our heroes: \na warrior who escaped the clutches of the SUPERIORS, \na librarian turned mage preserving ancient wisdom, \nand a rogue mastering stealth in the face of high-tech tyranny.\n As you navigate this cybernetic era, your choices will shape \nthe destiny of a world torn between ancient mysticism and technological dominance. \nAre you ready to lead the rebellion and restore freedom? \n";
+    cout << "\n            WELCOME to 'Chronicles of CYBERIA: Serenity of Elders '" << endl << endl << "In the year 2126, the world is under the oppressive rule of the $UPERIOR$,\n who seek to assimilate humanity into a cybernetic regime. Join our heroes: \na warrior who escaped the clutches of the $UPERIOR$, \na librarian turned mage preserving ancient wisdom, \nand a rogue mastering stealth in the face of high-tech tyranny.\n As you navigate this cybernetic era, your choices will shape \nthe destiny of a world torn between ancient mysticism and technological dominance. \nAre you ready to lead the rebellion and restore freedom? \n"<<endl << endl;
 
 
 
