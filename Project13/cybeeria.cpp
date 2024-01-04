@@ -269,11 +269,18 @@ int main() {
         do {
             cout << "\nDo you want to continue? (y/n): ";
             cin >> continueChoice;
+
+            if (cin.fail()) {
+                cin.clear(); // Clear the error flag
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
+                cout << "Invalid input. Please enter 'y' or 'n'.\n";
+                continue; // Skip the rest of the loop and start over
+            }
+
             if (continueChoice != 'y' && continueChoice != 'Y' && continueChoice != 'n' && continueChoice != 'N') {
                 cout << "Invalid choice. Please enter 'y' to continue or 'n' to exit.\n";
             }
         } while (continueChoice != 'y' && continueChoice != 'Y' && continueChoice != 'n' && continueChoice != 'N');
-
 
         if (continueChoice != 'y' && continueChoice != 'Y') {
             cout << "\nExiting the game.\n";
