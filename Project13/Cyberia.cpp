@@ -25,8 +25,15 @@ struct Mission {
 
 User initializeUser() {
     User User;
-    cout << "Enter your name: ";
-    getline(cin, User.username);
+    do {
+        cout << "Enter your name: ";
+        getline(cin, User.username);
+
+        if (User.username.empty()) {
+            cout << "Invalid input. Please enter a valid name.\n";
+        }
+
+    } while (User.username.empty());
 
 
     do {
@@ -56,15 +63,15 @@ User initializeUser() {
     return User;
 }
 
-void displayUserinfo(const User& player) {
+void displayUserinfo(const User& user) {
     cout << "\nCharacter Information:\n";
-    cout << "Name: " << player.username << "\n";
-    cout << "Class: " << player.Class << "\n";
-    cout << "Health: " << player.health << "\n";
-    cout << "Experience: " << player.XP << "\n";
+    cout << "Name: " << user.username << "\n";
+    cout << "Class: " << user.Class << "\n";
+    cout << "Health: " << user.health << "\n";
+    cout << "Experience: " << user.XP << "\n";
     cout << "Inventory:\n";
-    for (int i = 0; i < player.inventorySize; i++) {
-        cout << i + 1 << ". " << player.inventory[i] << "\n";
+    for (int i = 0; i < user.inventorySize; i++) {
+        cout << i + 1 << ". " << user.inventory[i] << "\n";
     }
 }
 
@@ -134,7 +141,7 @@ void Story(const Mission& Mission) {
 }
 
 void war(User& user, const Mission& Mission) {
-    srand(time(0)); // Simplified seed
+    srand(time(0));
 
     int enemyDifficulty = Mission.difficulty * 2;
     int enemyHealth = 30 + rand() % (enemyDifficulty * 10);
@@ -194,12 +201,14 @@ void war(User& user, const Mission& Mission) {
 
         char addHealthchoice;
         do {
-            cout << "Warning! If you want to buy items, your experience points will be deducted.\n";
+            cout << "Warning! If you increase Health, your experience points will be deducted.\n";
             system("pause");
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the input buffer
 
-            cout << "Do you want to buy an item? (y/n): ";
+            cout << "Do you want increase your health? (y/n): ";
             cin >> addHealthchoice;
+
+            
 
             if (cin.fail()) {
                 cin.clear(); // Clear the error flag
