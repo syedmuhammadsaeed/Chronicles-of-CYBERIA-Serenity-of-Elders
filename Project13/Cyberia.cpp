@@ -30,6 +30,7 @@ User initializeUser() {
         getline(cin, User.username);
 
         if (User.username.empty()) {
+
             cout << "Invalid input. Please enter a valid name.\n";
         }
 
@@ -230,7 +231,7 @@ void war(User& user, const Mission& Mission) {
 
 
 void levelUp(User& player) {
-    int requiredExperience = 50;
+    int requiredExperience = 40;
     if (player.XP >= requiredExperience) {
         cout << "\nLevel Up!\n";
         player.health += 30;
